@@ -1,0 +1,14 @@
+<ion-modal-view class="addModal">
+  <ion-header-bar>
+    <h1 class="title">Add {{currentItem.name}} Entry</h1>
+    <button class="button button-icon ion-close" ng-click="cancelUpdate()"></button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <input type="number" class="increase" ng-model="data.increase"/>
+    <div class="row">
+      <button class="col button button-block button-dark ion-minus" ng-click="data.increase = data.increase - 1"></button>
+      <button class="col button button-block button-dark ion-plus" ng-click="data.increase = data.increase + 1"></button>
+    </div>
+    <button class="button button-full button-positive icon-right ion-checkmark" ng-click="doUpdate(data.increase, currentItem)">Save</button>
+  </ion-content>
+</ion-modal-view>

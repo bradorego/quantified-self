@@ -1,0 +1,15 @@
+<ion-view view-title="Home">
+  <ion-content class="padding">
+    <ion-list class="list-inset">
+      <ion-item ng-repeat="item in items" ng-click="showUpdate(item)" on-hold="delete(item)">
+        <h2>{{item.name}}</h2>
+        <small>Last Edited: {{item.last_edited | date:"short"}}</small>
+        <span class="badge badge-positive">{{item.current_value}}</span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar class="bar-positive" ng-click="createItem()">
+    <h1 class="title">Add Item</h1>
+    <button class="button button-clear button-icon ion-plus"></button>
+  </ion-footer-bar>
+</ion-view>
