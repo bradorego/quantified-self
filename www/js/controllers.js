@@ -82,7 +82,7 @@ app.controller('AppCtrl', [
         addModal.hide();
       };
       $scope.doUpdate = function (change, currentItem) {
-        Data.update(change, currentItem)
+        Data.update(parseFloat(change.toFixed(2)), currentItem)
           .then(function () {
             loadData();
             $scope.data.increase = 0;

@@ -93,6 +93,7 @@ app.factory('Data', [
     Data.update = function (change, currentItem) {
       currentItem.entries.push({value: change, timestamp: +new Date()});
       currentItem.current_value += change;
+      currentItem.current_value = parseFloat(currentItem.current_value.toFixed(2));
       currentItem.last_edited = +new Date();
       return currentItem.$save();
     };
