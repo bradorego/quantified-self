@@ -96,6 +96,22 @@
 			}
 		},
 		{
+			"file": "www/js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 3935,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/index.html",
+			"settings":
+			{
+				"buffer_size": 958,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "www/templates/updateItem.html",
 			"settings":
 			{
@@ -513,7 +529,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -529,8 +545,8 @@
 						"selection":
 						[
 							[
-								522,
-								522
+								437,
+								445
 							]
 						],
 						"settings":
@@ -546,11 +562,77 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "www/js/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3935,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								623,
+								804
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 128.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 958,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								733,
+								606
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "www/templates/updateItem.html",
 					"semi_transient": false,
 					"settings":
@@ -562,8 +644,8 @@
 						"selection":
 						[
 							[
-								316,
-								316
+								0,
+								772
 							]
 						],
 						"settings":
@@ -581,11 +663,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 4,
 					"file": "scss/ionic.app.scss",
 					"semi_transient": false,
 					"settings":
@@ -614,11 +696,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "www/templates/home.html",
 					"semi_transient": false,
 					"settings":
@@ -647,7 +729,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -706,16 +788,20 @@
 		"selected_items":
 		[
 			[
+				"app.js",
+				"www/js/app.js"
+			],
+			[
+				"index.html",
+				"www/index.html"
+			],
+			[
 				"gitignore",
 				".gitignore"
 			],
 			[
 				"gulpfile",
 				"gulpfile.js"
-			],
-			[
-				"app.js",
-				"www/js/app.js"
 			],
 			[
 				"gitig",
@@ -1011,9 +1097,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "",
+		"last_filter": "beerb",
 		"selected_items":
 		[
+			[
+				"beerb",
+				"~/sublime-projects/beerbatterbreakfast.sublime-project"
+			],
 			[
 				"",
 				"~/Development/big5dating-app/big5-app.sublime-project"
