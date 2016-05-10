@@ -152,6 +152,7 @@ app.controller('AppCtrl', [
           .then(function (item, one, two, three) {
             console.log(item, one,two,three);
             $scope.currentItem = item;
+            $scope.data.addLabel = '';
           }, function (msg) {
             $ionicPopup.alert({
               title: "Error",
