@@ -135,6 +135,8 @@ app.controller('AppCtrl', [
       };
       $scope.showUpdate = function (item) {
         $scope.currentItem = item;
+        $scope.data.label = '';
+        $scope.data.addLabel = '';
         $scope.data.increase = 0;
         addModal.show();
       };
@@ -150,13 +152,12 @@ app.controller('AppCtrl', [
       $scope.addLabel = function (label, item) {
         Data.addLabel({label: label, item: item})
           .then(function (item, one, two, three) {
-            console.log(item, one,two,three);
             $scope.currentItem = item;
             $scope.data.addLabel = '';
           }, function (msg) {
             $ionicPopup.alert({
               title: "Error",
-              template: msg
+              template: msg.message
             });
           });
       };
@@ -168,17 +169,17 @@ app.controller('AppCtrl', [
           if (res) {
             Data.removeLabel({label: label, item: item})
               .then(function (item, one, two, three) {
-                console.log(item, one, two, three);
                 $scope.currentItem = item;
               });
           }
         })
       };
-      $scope.doUpdate = function (change, currentItem) {
-        Data.update(parseFloat(change.toFixed(2)), currentItem)
+      $scope.doUpdate = function (change, label, currentItem) {
+        Data.update(parseFloat(change.toFixed(2)), label, currentItem)
           .then(function () {
             loadData();
             $scope.data.increase = 0;
+            $scope.data.label = '';
             addModal.hide();
           }, function (err) {
             console.log(err);
@@ -323,7 +324,7 @@ app.factory('Data', [
     Data.addLabel = function (obj) {
       var d = $q.defer();
       if (obj.item.labels.indexOf(obj.label) !== -1 ) {
-        return d.reject({message: "Label already exists"});
+        return $q.reject({message: "Label already exists"});
       }
       obj.item.labels.push(obj.label);
       obj.item.$save(function (ref) {
@@ -335,7 +336,7 @@ app.factory('Data', [
       var d = $q.defer(),
         index = obj.item.labels.indexOf(obj.label);
       if (index === -1 ) {
-        return d.reject({message: "Label does not exist"});
+        return $q.reject({message: "Label does not exist"});
       }
       obj.item.labels.splice(index, 1);
       obj.item.$save(function (ref) {
@@ -343,8 +344,8 @@ app.factory('Data', [
       });
       return d.promise;
     };
-    Data.update = function (change, currentItem) {
-      currentItem.entries.push({value: change, timestamp: +new Date()});
+    Data.update = function (change, label, currentItem) {
+      currentItem.entries.push({value: change, timestamp: +new Date(), label: label});
       currentItem.current_value += change;
       currentItem.current_value = parseFloat(currentItem.current_value.toFixed(2));
       currentItem.last_edited = +new Date();

@@ -9802,7 +9802,9 @@ a.button {
   margin: 10px;
   font-size: 100px; }
 
-.addModal .item-input-inset .button {
-  line-height: 1;
-  padding: 6px 12px;
-  min-height: auto; }
+.addModal .item-input-inset {
+  padding: 10px 0px 0px; }
+  .addModal .item-input-inset .button {
+    line-height: 1;
+    padding: 6px 12px;
+    min-height: auto; }
