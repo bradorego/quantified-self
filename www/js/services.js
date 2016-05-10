@@ -92,7 +92,7 @@ app.factory('Data', [
     };
     Data.addLabel = function (obj) {
       var d = $q.defer();
-      if (obj.item.labels.indexOf(obj.label) !== -1 ) {
+      if (obj.item.labels.indexOf(obj.label) !== -1) {
         return $q.reject({message: "Label already exists"});
       }
       obj.item.labels.push(obj.label);
@@ -104,7 +104,7 @@ app.factory('Data', [
     Data.removeLabel = function (obj) {
       var d = $q.defer(),
         index = obj.item.labels.indexOf(obj.label);
-      if (index === -1 ) {
+      if (index === -1) {
         return $q.reject({message: "Label does not exist"});
       }
       obj.item.labels.splice(index, 1);

@@ -23,7 +23,7 @@ app.controller('AppCtrl', [
         Data.getAll().then(function (data) {
           $scope.items = data;
           $ionicLoading.hide();
-        }, function (err) {
+        }, function () { ///err) {
           $scope.appVM.logout();
           $ionicLoading.hide();
         });
@@ -88,13 +88,14 @@ app.controller('AppCtrl', [
       };
       $scope.toggleLabel = function (label) {
         if ($scope.data.label === label) {
-          return $scope.data.label = '';
+          $scope.data.label = '';
+          return;
         }
-        return $scope.data.label = label;
+        $scope.data.label = label;
       };
       $scope.addLabel = function (label, item) {
         Data.addLabel({label: label, item: item})
-          .then(function (item, one, two, three) {
+          .then(function (item) {
             $scope.currentItem = item;
             $scope.data.addLabel = '';
           }, function (msg) {
@@ -111,11 +112,11 @@ app.controller('AppCtrl', [
         }).then(function (res) {
           if (res) {
             Data.removeLabel({label: label, item: item})
-              .then(function (item, one, two, three) {
+              .then(function (item) {
                 $scope.currentItem = item;
               });
           }
-        })
+        });
       };
       $scope.doUpdate = function (change, label, currentItem) {
         Data.update(parseFloat(change.toFixed(2)), label, currentItem)
@@ -163,7 +164,7 @@ app.controller('AppCtrl', [
               } else {
                 loadData();
               }
-            }, function (err) {
+            }, function () { ///err) {
               $scope.appVM.logout();
             });
         });
