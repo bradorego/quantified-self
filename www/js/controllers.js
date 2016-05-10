@@ -23,6 +23,9 @@ app.controller('AppCtrl', [
         Data.getAll().then(function (data) {
           $scope.items = data;
           $ionicLoading.hide();
+        }, function (err) {
+          $scope.appVM.logout();
+          $ionicLoading.hide();
         });
       },
         addModal = {};
@@ -51,7 +54,7 @@ app.controller('AppCtrl', [
         $ionicPopup.show({
           scope: $scope,
           title: "Create Item",
-          template: "<p>Name:</p><input type='text' ng-model='data.createName'/><p>Start Value:</p><input type='number' ng-model='data.initialValue' value=0 />",
+          template: "<p>Name:</p><input type='text' ng-model='data.createName'/><p>Start Value:</p><input type='number' ng-model='data.initialValue' value=0 /><p>Label:</p><input type='text' ng-model='data.label' />",
           buttons: [{
             text: "Save",
             type: "button-positive",
@@ -65,7 +68,7 @@ app.controller('AppCtrl', [
             text: "Cancel"
           }]
         }).then(function (res) {
-          Data.create({name: res.createName, value: res.initialValue})
+          Data.create({name: res.createName, value: res.initialValue, label: res.label})
             .then(function () { /// succ) {
               loadData();
             }, function (err) {
@@ -80,6 +83,38 @@ app.controller('AppCtrl', [
       };
       $scope.cancelUpdate = function () {
         addModal.hide();
+      };
+      $scope.toggleLabel = function (label) {
+        if ($scope.data.label === label) {
+          return $scope.data.label = '';
+        }
+        return $scope.data.label = label;
+      };
+      $scope.addLabel = function (label, item) {
+        Data.addLabel({label: label, item: item})
+          .then(function (item, one, two, three) {
+            console.log(item, one,two,three);
+            $scope.currentItem = item;
+          }, function (msg) {
+            $ionicPopup.alert({
+              title: "Error",
+              template: msg
+            });
+          });
+      };
+      $scope.removeLabel = function (label, item) {
+        $ionicPopup.confirm({
+          title: "Are you sure?",
+          template: "This cannot be undone. Your existing data will not be modified."
+        }).then(function (res) {
+          if (res) {
+            Data.removeLabel({label: label, item: item})
+              .then(function (item, one, two, three) {
+                console.log(item, one, two, three);
+                $scope.currentItem = item;
+              });
+          }
+        })
       };
       $scope.doUpdate = function (change, currentItem) {
         Data.update(parseFloat(change.toFixed(2)), currentItem)
@@ -126,6 +161,8 @@ app.controller('AppCtrl', [
               } else {
                 loadData();
               }
+            }, function (err) {
+              $scope.appVM.logout();
             });
         });
       } else {

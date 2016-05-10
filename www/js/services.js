@@ -80,13 +80,36 @@ app.factory('Data', [
       var d = $q.defer(),
         output = {};
       if (!User.cached) {
-        return $q.defer().reject({error: "No user"});
+        return $q.reject({error: "No user"});
       }
       ref.child(User.cached).once('value', function (snapshot) {
         snapshot.forEach(function (obj) {
           output[obj.key()] = $firebaseObject(ref.child(User.cached).child(obj.key()));
         });
         return d.resolve(output);
+      });
+      return d.promise;
+    };
+    Data.addLabel = function (obj) {
+      var d = $q.defer();
+      if (obj.item.labels.indexOf(obj.label) !== -1 ) {
+        return d.reject({message: "Label already exists"});
+      }
+      obj.item.labels.push(obj.label);
+      obj.item.$save(function (ref) {
+        return Data.getOne(ref.key);
+      });
+      return d.promise;
+    };
+    Data.removeLabel = function (obj) {
+      var d = $q.defer(),
+        index = obj.item.labels.indexOf(obj.label);
+      if (index === -1 ) {
+        return d.reject({message: "Label does not exist"});
+      }
+      obj.item.labels.splice(index, 1);
+      obj.item.$save(function (ref) {
+        return Data.getOne(ref.key);
       });
       return d.promise;
     };
@@ -99,7 +122,7 @@ app.factory('Data', [
     };
     Data.getOne = function (name) {
       if (!User.cached) {
-        return $q.defer().reject({error: "No user"});
+        return $q.reject({error: "No user"});
       }
       return $q.when($firebaseObject(ref.child(User.cached).child(name)));
     };
@@ -116,8 +139,10 @@ app.factory('Data', [
           fbObj.name = object.name;
           fbObj.entries = [{
             timestamp: +new Date(),
-            value: object.value
+            value: object.value,
+            label: object.label
           }];
+          fbObj.labels = [object.label];
           fbObj.current_value = object.value;
           fbObj.last_edited = +new Date();
           fbObj.$save()

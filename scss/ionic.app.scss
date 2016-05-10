@@ -35,4 +35,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     margin: 10px;
     font-size: 100px;
   }
+  .item-input-inset {
+    .button {
+      line-height: 1;
+      padding: 6px 12px;
+      min-height: auto;
+    }
+  }
 }

@@ -9801,3 +9801,8 @@ a.button {
 .addModal .button-block {
   margin: 10px;
   font-size: 100px; }
+
+.addModal .item-input-inset .button {
+  line-height: 1;
+  padding: 6px 12px;
+  min-height: auto; }
