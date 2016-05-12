@@ -324,6 +324,9 @@ app.factory('Data', [
     };
     Data.addLabel = function (obj) {
       var d = $q.defer();
+      if (!obj.item.labels) {
+        obj.item.labels = [];
+      }
       if (obj.item.labels.indexOf(obj.label) !== -1) {
         return $q.reject({message: "Label already exists"});
       }
