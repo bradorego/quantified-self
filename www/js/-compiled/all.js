@@ -154,6 +154,7 @@ app.controller('AppCtrl', [
         Data.addLabel({label: label, item: item})
           .then(function (item) {
             $scope.currentItem = item;
+            $scope.data.label = '';
             $scope.data.addLabel = '';
           }, function (msg) {
             $ionicPopup.alert({

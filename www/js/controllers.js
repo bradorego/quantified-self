@@ -98,6 +98,7 @@ app.controller('AppCtrl', [
           .then(function (item) {
             $scope.currentItem = item;
             $scope.data.label = '';
+            $scope.data.addLabel = '';
           }, function (msg) {
             $ionicPopup.alert({
               title: "Error",
