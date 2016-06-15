@@ -328,6 +328,7 @@ app.factory('Data', [
       if (!obj.item.labels) {
         obj.item.labels = [];
       }
+      obj.label = obj.label.toLowerCase();
       if (obj.item.labels.indexOf(obj.label) !== -1) {
         return $q.reject({message: "Label already exists"});
       }
